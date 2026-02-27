@@ -338,7 +338,7 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
 </footer>
 
 <script>
-const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRfo_Km6u1uAsTBHANIs0KOHkbsLuzpocEJlmikbC5jpehY9Dq44tPW6xytlEBqRs/exec';
 
 const genders = ['Male','Female','Gay','Lesbian','Bisexual','Transgender','Others'];
 const clientTypes = ['College Student','High School Student','Visitor'];
@@ -545,7 +545,7 @@ async function submitSurvey() {
   };
 
   try {
-    if (SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')
+    if (SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbzRfo_Km6u1uAsTBHANIs0KOHkbsLuzpocEJlmikbC5jpehY9Dq44tPW6xytlEBqRs/exec')
       await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(data)});
     showSuccess();
   } catch { showSuccess(); }
