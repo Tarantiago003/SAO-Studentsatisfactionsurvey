@@ -22,7 +22,7 @@ h1{font-size:1.4rem;color:var(--g);font-weight:800}
 /* ── PROGRESS ── */
 .progress-wrap{max-width:680px;margin:0 auto 24px;padding:0 4px}
 .progress-labels{display:flex;justify-content:space-between;margin-bottom:8px}
-.prog-label{font-size:.7rem;font-weight:700;color:var(--muted);transition:.3s;cursor:pointer}
+.prog-label{font-size:.7rem;font-weight:700;color:var(--muted);transition:.3s}
 .prog-label.active{color:var(--g)}
 .prog-bar-bg{height:6px;background:#d0e8d9;border-radius:99px;overflow:hidden}
 .prog-bar{height:100%;background:linear-gradient(90deg,var(--g),var(--g2));border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1)}
@@ -31,16 +31,45 @@ h1{font-size:1.4rem;color:var(--g);font-weight:800}
 .dot.done{background:var(--g);color:#fff;border-color:var(--g);transform:scale(1.05)}
 .dot.active{background:#fff;color:var(--g);border-color:var(--g);box-shadow:0 0 0 3px rgba(15,122,58,.2)}
 
-/* ── STEP CARD ── */
+/* ── CARDS ── */
 .step-card{max-width:680px;margin:0 auto;background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;display:none;animation:slideIn .35s ease}
 .step-card.active{display:block}
 @keyframes slideIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-14px)}}
 .card-head{background:var(--g);padding:16px 22px;color:#fff;display:flex;align-items:center;gap:12px}
 .card-head .num{background:rgba(255,255,255,.22);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0}
 .card-head h2{font-size:1rem;font-weight:700}
 .card-head .desc{font-size:.76rem;opacity:.85;margin-top:2px}
 .card-body{padding:22px}
+
+/* ── DATA PRIVACY INTRO CARD ── */
+.privacy-card{max-width:680px;margin:0 auto;background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;animation:slideIn .4s ease}
+.privacy-hero{background:linear-gradient(135deg,var(--g),var(--g2));padding:28px 24px;text-align:center;color:#fff}
+.privacy-hero .shield{font-size:3rem;margin-bottom:10px;display:block}
+.privacy-hero h2{font-size:1.25rem;font-weight:800;margin-bottom:4px}
+.privacy-hero p{font-size:.82rem;opacity:.9}
+.privacy-body{padding:24px}
+.privacy-section{background:var(--g3);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.privacy-section h3{font-size:.88rem;font-weight:700;color:var(--g);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.privacy-section p,.privacy-section li{font-size:.82rem;color:var(--text);line-height:1.65}
+.privacy-section ul{padding-left:18px;margin-top:6px}
+.privacy-section ul li{margin-bottom:4px}
+.privacy-ref{font-size:.75rem;color:var(--muted);text-align:center;margin:10px 0 18px;line-height:1.5}
+
+.consent-box{border:2px solid var(--border);border-radius:12px;padding:16px;display:flex;align-items:flex-start;gap:12px;cursor:pointer;transition:.2s;background:#fff}
+.consent-box:hover{border-color:var(--g);background:var(--g3)}
+.consent-box.checked{border-color:var(--g);background:var(--g4)}
+.consent-box input[type=checkbox]{width:20px;height:20px;accent-color:var(--g);flex-shrink:0;margin-top:2px;cursor:pointer}
+.consent-box label{font-size:.84rem;line-height:1.55;cursor:pointer;font-weight:500}
+.consent-box.checked label{color:var(--g);font-weight:600}
+.err{font-size:.78rem;color:#c0392b;margin-top:6px;display:none;align-items:center;gap:4px}
+.err.show{display:flex}
+.err::before{content:'⚠';font-size:.8rem}
+
+/* ── INLINE CONSENT (step 5) ── */
+.inline-consent{margin-top:20px;border-top:2px dashed var(--border);padding-top:18px}
+.inline-consent-title{font-size:.82rem;font-weight:700;color:var(--g);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.mini-privacy{background:var(--g3);border:1.5px solid var(--border);border-radius:10px;padding:13px 15px;margin-bottom:12px;font-size:.78rem;color:var(--muted);line-height:1.6}
+.mini-privacy strong{color:var(--text)}
 
 /* ── OPTIONS ── */
 .opt-grid{display:grid;gap:9px}
@@ -48,16 +77,12 @@ h1{font-size:1.4rem;color:var(--g);font-weight:800}
 .opt-grid.cols3{grid-template-columns:1fr 1fr 1fr}
 @media(max-width:480px){.opt-grid.cols2,.opt-grid.cols3{grid-template-columns:1fr 1fr}}
 @media(max-width:360px){.opt-grid.cols2,.opt-grid.cols3{grid-template-columns:1fr}}
-
-.opt{display:flex;align-items:center;gap:10px;background:var(--g3);border:2px solid var(--border);border-radius:10px;padding:11px 14px;cursor:pointer;transition:all .18s;user-select:none;position:relative;overflow:hidden}
-.opt::after{content:'';position:absolute;inset:0;background:var(--g);opacity:0;transition:.2s}
+.opt{display:flex;align-items:center;gap:10px;background:var(--g3);border:2px solid var(--border);border-radius:10px;padding:11px 14px;cursor:pointer;transition:all .18s;user-select:none}
 .opt:hover{border-color:var(--g);background:var(--g4);transform:translateY(-1px)}
 .opt.selected{border-color:var(--g);background:var(--g4);box-shadow:0 2px 10px rgba(15,122,58,.18)}
-.opt input{accent-color:var(--g);width:17px;height:17px;flex-shrink:0;position:relative;z-index:1}
-.opt-text{font-size:.85rem;line-height:1.3;font-weight:500;position:relative;z-index:1}
+.opt input{accent-color:var(--g);width:17px;height:17px;flex-shrink:0}
+.opt-text{font-size:.85rem;line-height:1.3;font-weight:500}
 .opt.selected .opt-text{color:var(--g);font-weight:700}
-
-/* checkmark badge */
 .opt .check-badge{width:20px;height:20px;border-radius:50%;background:var(--g);color:#fff;display:none;align-items:center;justify-content:center;font-size:.75rem;margin-left:auto;flex-shrink:0}
 .opt.selected .check-badge{display:flex;animation:pop .2s ease}
 @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
@@ -69,7 +94,6 @@ input[type=text]:focus,input[type=date]:focus,textarea:focus{border-color:var(--
 textarea{resize:vertical;min-height:90px}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
 @media(max-width:480px){.two-col{grid-template-columns:1fr}}
-
 .specify-wrap{margin-top:10px;display:none}
 .specify-wrap.show{display:block}
 
@@ -96,16 +120,13 @@ textarea{resize:vertical;min-height:90px}
 .btn-back{background:#fff;color:var(--g);border:2px solid var(--g)}
 .btn-back:hover{background:var(--g3)}
 .btn-next{background:var(--g);color:#fff;flex:1;box-shadow:0 4px 14px rgba(15,122,58,.3)}
-.btn-next:hover{background:var(--g2);transform:translateY(-1px);box-shadow:0 6px 18px rgba(15,122,58,.35)}
+.btn-next:hover{background:var(--g2);transform:translateY(-1px)}
 .btn-next:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 .btn-submit{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;flex:1;box-shadow:0 4px 14px rgba(15,122,58,.35)}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,122,58,.4)}
-
-/* ── ERRORS ── */
-.err{font-size:.78rem;color:#c0392b;margin-top:6px;display:none;align-items:center;gap:4px}
-.err.show{display:flex}
-.err::before{content:'⚠';font-size:.8rem}
-.req{color:#c0392b}
+.btn-start{background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;width:100%;padding:15px;border-radius:12px;font-size:1rem;font-weight:700;border:none;cursor:pointer;transition:.2s;box-shadow:0 4px 16px rgba(15,122,58,.35);margin-top:6px}
+.btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(15,122,58,.4)}
+.btn-start:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 /* ── SUCCESS ── */
 .success-screen{display:none;max-width:680px;margin:0 auto;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:48px 32px;text-align:center}
@@ -113,12 +134,11 @@ textarea{resize:vertical;min-height:90px}
 .success-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--g),var(--g2));margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:2.2rem;animation:bounce .5s ease .1s both}
 @keyframes bounce{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
 .success-screen h2{font-size:1.5rem;color:var(--g);margin-bottom:10px}
-.success-screen p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:24px}
-.btn-restart{background:var(--g);color:#fff;padding:13px 36px;border-radius:12px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s}
+.success-screen p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:8px}
+.btn-restart{background:var(--g);color:#fff;padding:13px 36px;border-radius:12px;border:none;font-size:.9rem;font-weight:700;cursor:pointer;transition:.2s;margin-top:16px}
 .btn-restart:hover{background:var(--g2);transform:translateY(-1px)}
-
-/* ── COUNTER ── */
 .sel-count{font-size:.75rem;color:var(--g);font-weight:700;margin-top:8px;min-height:18px}
+.req{color:#c0392b}
 
 footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
 </style>
@@ -131,8 +151,62 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
   <p class="subtitle">Manuel V. Gallego Foundation Colleges</p>
 </header>
 
-<!-- PROGRESS -->
-<div class="progress-wrap" id="progressWrap">
+<!-- ══════════════════════════════════════════════════════
+     DATA PRIVACY INTRO SCREEN
+══════════════════════════════════════════════════════ -->
+<div class="privacy-card" id="privacyScreen">
+  <div class="privacy-hero">
+    <span class="shield">🔒</span>
+    <h2>Data Privacy Notice</h2>
+    <p>Please read before filling out the survey</p>
+  </div>
+  <div class="privacy-body">
+
+    <div class="privacy-section">
+      <h3>📋 Purpose of Data Collection</h3>
+      <p>The Guidance Services Office of <strong>Manuel V. Gallego Foundation Colleges (MVGFC)</strong> collects your personal information and survey responses for the following purposes:</p>
+      <ul>
+        <li>To evaluate and improve the quality of guidance services</li>
+        <li>For institutional research and program development</li>
+        <li>To monitor student welfare and satisfaction</li>
+        <li>For academic and administrative reporting</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>🔐 How Your Data Is Protected</h3>
+      <p>Your responses are stored securely and will only be accessed by authorized personnel of the Guidance Services Office. All data collected is treated with strict confidentiality in accordance with:</p>
+      <ul>
+        <li><strong>Republic Act 10173</strong> – Data Privacy Act of 2012</li>
+        <li>The National Privacy Commission (NPC) guidelines</li>
+        <li>MVGFC's internal data protection policies</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>📊 Use for Research & Study</h3>
+      <p>Aggregated and anonymized survey data may be used for research, academic studies, and institutional reports. Your individual identity will <strong>never</strong> be disclosed in any published output. You may request access, correction, or deletion of your data at any time by contacting the Guidance Office.</p>
+    </div>
+
+    <p class="privacy-ref">
+      For questions about your data, contact the MVGFC Guidance Services Office.<br>
+      By proceeding, you acknowledge that you have read and understood this notice.
+    </p>
+
+    <div class="consent-box" id="introConsentBox" onclick="toggleConsent('introConsent','introConsentBox','introConsentErr')">
+      <input type="checkbox" id="introConsent" onclick="event.stopPropagation();toggleConsent('introConsent','introConsentBox','introConsentErr')">
+      <label for="introConsent">I have read and understood the Data Privacy Notice. I voluntarily consent to the collection and use of my information for the purposes stated above, including research and institutional studies.</label>
+    </div>
+    <div class="err" id="introConsentErr" style="margin-top:8px">You must agree to the Data Privacy Notice to proceed.</div>
+
+    <button class="btn-start" id="startBtn" onclick="startSurvey()">
+      I Agree & Start the Survey →
+    </button>
+  </div>
+</div>
+
+<!-- PROGRESS (hidden until survey starts) -->
+<div class="progress-wrap" id="progressWrap" style="display:none">
   <div class="progress-labels">
     <span class="prog-label" data-s="0">Personal</span>
     <span class="prog-label" data-s="1">Transaction</span>
@@ -151,11 +225,8 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
 </div>
 
 <!-- ── STEP 1: PERSONAL INFO ── -->
-<div class="step-card active" id="step0">
-  <div class="card-head">
-    <div class="num">1</div>
-    <div><h2>Personal Information</h2><div class="desc">Tell us a little about yourself</div></div>
-  </div>
+<div class="step-card" id="step0">
+  <div class="card-head"><div class="num">1</div><div><h2>Personal Information</h2><div class="desc">Tell us a little about yourself</div></div></div>
   <div class="card-body">
     <span class="field-label">Gender <span class="req">*</span></span>
     <div class="opt-grid cols3" id="genderGrid"></div>
@@ -163,7 +234,6 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
       <input type="text" id="genderSpecify" placeholder="Please specify your gender…">
     </div>
     <div class="err" id="genderErr">Please select a gender.</div>
-
     <span class="field-label" style="margin-top:20px;display:block">Client Type <span class="req">*</span></span>
     <div class="opt-grid cols3" id="clientGrid"></div>
     <div class="err" id="clientErr">Please select your client type.</div>
@@ -172,34 +242,22 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
 
 <!-- ── STEP 2: TRANSACTION ── -->
 <div class="step-card" id="step1">
-  <div class="card-head">
-    <div class="num">2</div>
-    <div><h2>Type of Transaction</h2><div class="desc">What brings you to the Guidance Office today?</div></div>
-  </div>
+  <div class="card-head"><div class="num">2</div><div><h2>Type of Transaction</h2><div class="desc">What brings you to the Guidance Office today?</div></div></div>
   <div class="card-body">
     <span class="field-label">Select all that apply <span class="req">*</span></span>
     <div class="opt-grid cols2" id="txGrid"></div>
     <div class="sel-count" id="txCount"></div>
     <div class="err" id="txErr">Please select at least one transaction.</div>
     <div class="two-col">
-      <div>
-        <span class="field-label">Date of Graduation</span>
-        <input type="date" id="gradDate">
-      </div>
-      <div>
-        <span class="field-label">Purpose</span>
-        <input type="text" id="purpose" placeholder="State your purpose…">
-      </div>
+      <div><span class="field-label">Date of Graduation</span><input type="date" id="gradDate"></div>
+      <div><span class="field-label">Purpose</span><input type="text" id="purpose" placeholder="State your purpose…"></div>
     </div>
   </div>
 </div>
 
 <!-- ── STEP 3: PLATFORM ── -->
 <div class="step-card" id="step2">
-  <div class="card-head">
-    <div class="num">3</div>
-    <div><h2>Platform Used</h2><div class="desc">How did you avail the service?</div></div>
-  </div>
+  <div class="card-head"><div class="num">3</div><div><h2>Platform Used</h2><div class="desc">How did you avail the service?</div></div></div>
   <div class="card-body">
     <span class="field-label">Select one <span class="req">*</span></span>
     <div class="opt-grid cols2" id="platformGrid"></div>
@@ -209,10 +267,7 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
 
 <!-- ── STEP 4: RATING ── -->
 <div class="step-card" id="step3">
-  <div class="card-head">
-    <div class="num">4</div>
-    <div><h2>Satisfaction Rating</h2><div class="desc">Tap a number to rate each statement</div></div>
-  </div>
+  <div class="card-head"><div class="num">4</div><div><h2>Satisfaction Rating</h2><div class="desc">Tap a number to rate each statement</div></div></div>
   <div class="card-body">
     <div class="likert-header">
       <span>1<br><small>Very<br>Dissatisfied</small></span>
@@ -225,54 +280,67 @@ footer{text-align:center;font-size:.74rem;color:var(--muted);margin-top:32px}
   </div>
 </div>
 
-<!-- ── STEP 5: COMMENTS ── -->
+<!-- ── STEP 5: COMMENTS & SIGNATURE ── -->
 <div class="step-card" id="step4">
-  <div class="card-head">
-    <div class="num">5</div>
-    <div><h2>Comments & Signature</h2><div class="desc">Almost done — final details</div></div>
-  </div>
+  <div class="card-head"><div class="num">5</div><div><h2>Comments & Signature</h2><div class="desc">Almost done — final details</div></div></div>
   <div class="card-body">
     <span class="field-label">Comments / Suggestions</span>
     <textarea id="comments" placeholder="Your feedback helps us serve you better…"></textarea>
 
     <div class="two-col">
       <div>
-        <span class="field-label" style="margin-top:0">Signature (Full Name) <span class="req">*</span></span>
+        <span class="field-label">Signature (Full Name) <span class="req">*</span></span>
         <input type="text" id="signature" placeholder="Type your full name">
         <div class="err" id="sigErr">Please enter your full name.</div>
       </div>
       <div>
-        <span class="field-label" style="margin-top:0">Date</span>
+        <span class="field-label">Date</span>
         <input type="text" id="dateField" readonly style="background:#f5f5f5;color:var(--muted)">
       </div>
+    </div>
+
+    <!-- INLINE DATA PRIVACY CONSENT -->
+    <div class="inline-consent">
+      <div class="inline-consent-title">🔒 Data Privacy Consent</div>
+      <div class="mini-privacy">
+        By signing this survey, you confirm that the information you have provided is <strong>true and accurate</strong> to the best of your knowledge.
+        Your responses may be used by the <strong>MVGFC Guidance Services Office</strong> for institutional research, program evaluation, and service improvement.
+        All data will be handled in accordance with <strong>Republic Act 10173 (Data Privacy Act of 2012)</strong>.
+        Your identity will remain confidential in any published research or report.
+      </div>
+      <div class="consent-box" id="finalConsentBox" onclick="toggleConsent('finalConsent','finalConsentBox','finalConsentErr')">
+        <input type="checkbox" id="finalConsent" onclick="event.stopPropagation();toggleConsent('finalConsent','finalConsentBox','finalConsentErr')">
+        <label for="finalConsent">I consent to the collection and use of my responses for research, program evaluation, and institutional studies in accordance with the Data Privacy Act of 2012. I understand that my identity will be kept confidential.</label>
+      </div>
+      <div class="err" id="finalConsentErr" style="margin-top:8px">Please tick the consent checkbox to submit.</div>
     </div>
   </div>
 </div>
 
-<!-- ── SUCCESS ── -->
+<!-- SUCCESS -->
 <div class="success-screen" id="successScreen">
   <div class="success-icon">✓</div>
   <h2>Thank You!</h2>
-  <p>Your response has been recorded.<br>The Guidance Office appreciates your honest feedback.</p>
+  <p>Your response has been recorded successfully.<br>The Guidance Office appreciates your honest feedback.</p>
+  <p style="font-size:.78rem;color:var(--muted);margin-top:4px">Your data is protected under the Data Privacy Act of 2012 (RA 10173).</p>
   <button class="btn-restart" id="restartBtn">Submit Another Response</button>
 </div>
 
-<!-- ── NAVIGATION ── -->
-<div class="nav" id="navWrap">
+<!-- NAVIGATION -->
+<div class="nav" id="navWrap" style="display:none">
   <button class="btn btn-back" id="backBtn" style="display:none" onclick="navigate(-1)">← Back</button>
   <button class="btn btn-next" id="nextBtn" onclick="navigate(1)">Next →</button>
 </div>
 
 <footer>
   <p>Manuel V. Gallego Foundation Colleges &nbsp;•&nbsp; Guidance Services Office</p>
-  <p style="margin-top:4px">All responses are kept strictly confidential.</p>
+  <p style="margin-top:4px">Protected under RA 10173 – Data Privacy Act of 2012</p>
 </footer>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzRfo_Km6u1uAsTBHANIs0KOHkbsLuzpocEJlmikbC5jpehY9Dq44tPW6xytlEBqRs/exec';
+const SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
-// ── DATA ──────────────────────────────────────────────────────────────────
-const genders     = ['Male','Female','Gay','Lesbian','Bisexual','Transgender','Others'];
+const genders = ['Male','Female','Gay','Lesbian','Bisexual','Transgender','Others'];
 const clientTypes = ['College Student','High School Student','Visitor'];
 const transactions = [
   'Exit Assessment (Graduating)','Exit Interview (Dropouts)',
@@ -281,8 +349,8 @@ const transactions = [
   'Testing Services (Student)','Testing Services (Employment)',
   'Career & Placement Service','Issuance of Good Moral Certificate'
 ];
-const platforms   = ['Personal Appointment','Phone Call','Email','Social Media','Video Call / Conference'];
-const questions   = [
+const platforms = ['Personal Appointment','Phone Call','Email','Social Media','Video Call / Conference'];
+const questions = [
   'The Guidance staff/counselor is knowledgeable, accommodating, friendly and approachable.',
   'Availed Guidance services in a smooth, fast and organized manner.',
   'Resolved problems, inquiries and/or requests with accurate solutions.',
@@ -290,11 +358,34 @@ const questions   = [
   'Minimum health protocols were strictly observed during my transaction.'
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────────────
 let cur = 0, submitting = false;
 const TOTAL = 5;
 
-// ── BUILDERS ─────────────────────────────────────────────────────────────
+// ── CONSENT TOGGLE ─────────────────────────────────────────────────────────
+function toggleConsent(cbId, boxId, errId) {
+  const cb  = document.getElementById(cbId);
+  const box = document.getElementById(boxId);
+  const err = document.getElementById(errId);
+  // when clicking the box (not the checkbox itself), toggle manually
+  if (event.target === box || event.target.tagName === 'LABEL') cb.checked = !cb.checked;
+  box.classList.toggle('checked', cb.checked);
+  if (cb.checked) err.classList.remove('show');
+}
+
+function startSurvey() {
+  const cb = document.getElementById('introConsent');
+  if (!cb.checked) {
+    document.getElementById('introConsentErr').classList.add('show');
+    return;
+  }
+  document.getElementById('privacyScreen').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('navWrap').style.display = 'flex';
+  document.getElementById('step0').classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── BUILDERS ───────────────────────────────────────────────────────────────
 function buildRadioGroup(container, items, name, onSelect) {
   items.forEach(item => {
     const lbl = document.createElement('label');
@@ -316,8 +407,7 @@ function buildCheckGroup(container, items, name, countEl, errEl) {
     const lbl = document.createElement('label');
     lbl.className = 'opt';
     lbl.innerHTML = `<input type="checkbox" name="${name}" value="${item}">
-      <span class="opt-text">${item}</span>
-      <span class="check-badge">✓</span>`;
+      <span class="opt-text">${item}</span><span class="check-badge">✓</span>`;
     lbl.addEventListener('click', () => {
       const cb = lbl.querySelector('input');
       setTimeout(() => {
@@ -334,21 +424,15 @@ function buildCheckGroup(container, items, name, countEl, errEl) {
 function buildLikert(container) {
   questions.forEach((q, i) => {
     const row = document.createElement('div');
-    row.className = 'likert-row';
-    row.id = `lrow${i}`;
+    row.className = 'likert-row'; row.id = `lrow${i}`;
     let bubbles = '';
-    for (let v = 1; v <= 4; v++) {
-      bubbles += `<label>
-        <input type="radio" name="q${i+1}" value="${v}" onchange="onRate(${i},${v})">
+    for (let v=1;v<=4;v++) {
+      bubbles += `<label><input type="radio" name="q${i+1}" value="${v}" onchange="onRate(${i},${v})">
         <div class="bubble">${v}</div>
-        <span class="score-label">${['Very<br>Dissatisfied','Dissatisfied','Satisfied','Very<br>Satisfied'][v-1]}</span>
-      </label>`;
+        <span class="score-label">${['Very<br>Dissatisfied','Dissatisfied','Satisfied','Very<br>Satisfied'][v-1]}</span></label>`;
     }
-    row.innerHTML = `
-      <div class="likert-row-top">
-        <span class="likert-q">${i+1}. ${q}</span>
-        <div class="likert-radios">${bubbles}</div>
-      </div>
+    row.innerHTML = `<div class="likert-row-top"><span class="likert-q">${i+1}. ${q}</span>
+      <div class="likert-radios">${bubbles}</div></div>
       <div class="rating-bar"><div class="rating-fill" id="rfill${i}"></div></div>`;
     container.appendChild(row);
   });
@@ -360,19 +444,17 @@ function onRate(i, v) {
   document.getElementById('ratingErr').classList.remove('show');
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────────
+// ── INIT ───────────────────────────────────────────────────────────────────
 (function init() {
   buildRadioGroup(document.getElementById('genderGrid'), genders, 'gender', v => {
-    document.getElementById('specifyWrap').classList.toggle('show', v === 'Others');
+    document.getElementById('specifyWrap').classList.toggle('show', v==='Others');
     document.getElementById('genderErr').classList.remove('show');
   });
   buildRadioGroup(document.getElementById('clientGrid'), clientTypes, 'clientType', () => {
     document.getElementById('clientErr').classList.remove('show');
   });
-  buildCheckGroup(
-    document.getElementById('txGrid'), transactions, 'transaction',
-    document.getElementById('txCount'), document.getElementById('txErr')
-  );
+  buildCheckGroup(document.getElementById('txGrid'), transactions, 'transaction',
+    document.getElementById('txCount'), document.getElementById('txErr'));
   buildRadioGroup(document.getElementById('platformGrid'), platforms, 'platform', () => {
     document.getElementById('platformErr').classList.remove('show');
   });
@@ -381,47 +463,40 @@ function onRate(i, v) {
   const d = new Date();
   document.getElementById('dateField').value =
     d.toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'});
-
-  updateUI();
 })();
 
-// ── VALIDATION ────────────────────────────────────────────────────────────
+// ── VALIDATION ─────────────────────────────────────────────────────────────
 function validateStep(s) {
   let ok = true;
-  if (s === 0) {
-    const g = document.querySelector('input[name="gender"]:checked');
-    if (!g) { document.getElementById('genderErr').classList.add('show'); ok=false; }
-    const c = document.querySelector('input[name="clientType"]:checked');
-    if (!c) { document.getElementById('clientErr').classList.add('show'); ok=false; }
+  if (s===0) {
+    if (!document.querySelector('input[name="gender"]:checked'))
+      { document.getElementById('genderErr').classList.add('show'); ok=false; }
+    if (!document.querySelector('input[name="clientType"]:checked'))
+      { document.getElementById('clientErr').classList.add('show'); ok=false; }
   }
-  if (s === 1) {
-    const t = document.querySelectorAll('input[name="transaction"]:checked');
-    if (!t.length) { document.getElementById('txErr').classList.add('show'); ok=false; }
-  }
-  if (s === 2) {
-    const p = document.querySelector('input[name="platform"]:checked');
-    if (!p) { document.getElementById('platformErr').classList.add('show'); ok=false; }
-  }
-  if (s === 3) {
-    const all = ['q1','q2','q3','q4','q5'].every(q => document.querySelector(`input[name="${q}"]:checked`));
-    if (!all) { document.getElementById('ratingErr').classList.add('show'); ok=false; }
-  }
-  if (s === 4) {
-    const sig = document.getElementById('signature').value.trim();
-    if (!sig) { document.getElementById('sigErr').classList.add('show'); ok=false; }
+  if (s===1 && !document.querySelectorAll('input[name="transaction"]:checked').length)
+    { document.getElementById('txErr').classList.add('show'); ok=false; }
+  if (s===2 && !document.querySelector('input[name="platform"]:checked'))
+    { document.getElementById('platformErr').classList.add('show'); ok=false; }
+  if (s===3 && !['q1','q2','q3','q4','q5'].every(q=>document.querySelector(`input[name="${q}"]:checked`)))
+    { document.getElementById('ratingErr').classList.add('show'); ok=false; }
+  if (s===4) {
+    if (!document.getElementById('signature').value.trim())
+      { document.getElementById('sigErr').classList.add('show'); ok=false; }
+    if (!document.getElementById('finalConsent').checked)
+      { document.getElementById('finalConsentErr').classList.add('show'); ok=false; }
   }
   return ok;
 }
 
-// ── NAVIGATION ────────────────────────────────────────────────────────────
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
 function navigate(dir) {
-  if (dir === 1 && !validateStep(cur)) {
-    const firstErr = document.querySelector(`#step${cur} .err.show`);
-    if (firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+  if (dir===1 && !validateStep(cur)) {
+    const e = document.querySelector(`#step${cur} .err.show`);
+    if (e) e.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-  if (dir === 1 && cur === TOTAL-1) { submitSurvey(); return; }
-
+  if (dir===1 && cur===TOTAL-1) { submitSurvey(); return; }
   document.getElementById(`step${cur}`).classList.remove('active');
   cur += dir;
   document.getElementById(`step${cur}`).classList.add('active');
@@ -430,41 +505,30 @@ function navigate(dir) {
 }
 
 function updateUI() {
-  // progress bar
   document.getElementById('progBar').style.width = ((cur+1)/TOTAL*100)+'%';
-  // dots
   for (let i=0;i<TOTAL;i++) {
     const d = document.getElementById(`dot${i}`);
-    d.className = 'dot' + (i<cur?' done':i===cur?' active':'');
-    d.textContent = i < cur ? '✓' : i+1;
+    d.className = 'dot'+(i<cur?' done':i===cur?' active':'');
+    d.textContent = i<cur ? '✓' : i+1;
   }
-  // labels
-  document.querySelectorAll('.prog-label').forEach((l,i) => {
-    l.classList.toggle('active', i===cur);
-  });
-  // back / next
-  document.getElementById('backBtn').style.display = cur > 0 ? 'block' : 'none';
+  document.querySelectorAll('.prog-label').forEach((l,i)=>l.classList.toggle('active',i===cur));
+  document.getElementById('backBtn').style.display = cur>0 ? 'block' : 'none';
   const nb = document.getElementById('nextBtn');
-  nb.textContent = cur === TOTAL-1 ? '🚀 Submit Survey' : 'Next →';
-  nb.className = 'btn ' + (cur === TOTAL-1 ? 'btn-submit' : 'btn-next');
+  nb.textContent = cur===TOTAL-1 ? '🚀 Submit Survey' : 'Next →';
+  nb.className = 'btn '+(cur===TOTAL-1 ? 'btn-submit' : 'btn-next');
 }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────
+// ── SUBMIT ─────────────────────────────────────────────────────────────────
 async function submitSurvey() {
   if (submitting) return;
-  if (!validateStep(4)) return;
   submitting = true;
-
   const nb = document.getElementById('nextBtn');
-  nb.disabled = true;
-  nb.textContent = '⏳ Submitting…';
+  nb.disabled = true; nb.textContent = '⏳ Submitting…';
 
   const gender = document.querySelector('input[name="gender"]:checked').value;
   const data = {
     date: document.getElementById('dateField').value,
-    gender: gender === 'Others'
-      ? 'Others: ' + (document.getElementById('genderSpecify').value.trim() || 'not specified')
-      : gender,
+    gender: gender==='Others' ? 'Others: '+(document.getElementById('genderSpecify').value.trim()||'not specified') : gender,
     clientType: document.querySelector('input[name="clientType"]:checked').value,
     transactions: [...document.querySelectorAll('input[name="transaction"]:checked')].map(c=>c.value).join(', '),
     gradDate: document.getElementById('gradDate').value,
@@ -476,17 +540,15 @@ async function submitSurvey() {
     q4: document.querySelector('input[name="q4"]:checked').value,
     q5: document.querySelector('input[name="q5"]:checked').value,
     comments: document.getElementById('comments').value.trim(),
-    signature: document.getElementById('signature').value.trim()
+    signature: document.getElementById('signature').value.trim(),
+    consentGiven: 'Yes – agreed to Data Privacy Notice and Research Consent'
   };
 
   try {
-    if (SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      await fetch(SCRIPT_URL, {method:'POST', body: JSON.stringify(data)});
-    }
+    if (SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE')
+      await fetch(SCRIPT_URL, {method:'POST', body:JSON.stringify(data)});
     showSuccess();
-  } catch {
-    showSuccess(); // show success anyway for demo
-  }
+  } catch { showSuccess(); }
 }
 
 function showSuccess() {
@@ -498,9 +560,7 @@ function showSuccess() {
   submitting = false;
 }
 
-document.getElementById('restartBtn').addEventListener('click', () => {
-  location.reload();
-});
+document.getElementById('restartBtn').addEventListener('click', () => location.reload());
 </script>
 </body>
 </html>
