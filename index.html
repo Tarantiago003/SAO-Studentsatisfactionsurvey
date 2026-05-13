@@ -95,7 +95,6 @@ textarea{resize:vertical;min-height:90px}
 @media(max-width:480px){.two-col{grid-template-columns:1fr}}
 .specify-wrap{margin-top:9px;display:none}
 .specify-wrap.show{display:block}
-.sel-count{font-size:.74rem;color:var(--g);font-weight:700;margin-top:7px;min-height:18px}
 .req{color:#c0392b}
 
 /* ══════════════════════════════════════════
@@ -257,10 +256,9 @@ footer{text-align:center;font-size:.72rem;color:var(--muted);margin-top:28px;pad
 <div class="step-card" id="step1">
   <div class="card-head"><div class="num">2</div><div><h2>Type of Transaction</h2><div class="desc">What brings you to the Guidance Office today?</div></div></div>
   <div class="card-body">
-    <span class="field-label">Select all that apply <span class="req">*</span></span>
+    <span class="field-label">Select one <span class="req">*</span></span>
     <div class="opt-grid cols2" id="txGrid"></div>
-    <div class="sel-count" id="txCount"></div>
-    <div class="err" id="txErr">Please select at least one transaction.</div>
+    <div class="err" id="txErr">Please select a transaction.</div>
     <div class="two-col">
       <div><span class="field-label">Date of Graduation</span><input type="date" id="gradDate"></div>
       <div><span class="field-label">Purpose</span><input type="text" id="purpose" placeholder="State your purpose…"></div>
@@ -402,24 +400,6 @@ function buildRadioGroup(container, items, name, onSelect) {
   });
 }
 
-function buildCheckGroup(container, items, name, countEl, errEl) {
-  items.forEach(item => {
-    const lbl = document.createElement('label');
-    lbl.className = 'opt';
-    lbl.innerHTML = `<input type="checkbox" name="${name}" value="${item}"><span class="opt-text">${item}</span><span class="check-badge">✓</span>`;
-    lbl.addEventListener('click', () => {
-      const cb = lbl.querySelector('input');
-      setTimeout(() => {
-        cb.checked ? lbl.classList.add('selected') : lbl.classList.remove('selected');
-        const n = container.querySelectorAll('input:checked').length;
-        countEl.textContent = n ? `${n} transaction${n>1?'s':''} selected` : '';
-        if (n > 0) errEl.classList.remove('show');
-      }, 0);
-    });
-    container.appendChild(lbl);
-  });
-}
-
 function buildLikert(container) {
   questions.forEach((q, i) => {
     const row = document.createElement('div');
@@ -464,8 +444,9 @@ function onRate(i, v) {
   });
   buildRadioGroup(document.getElementById('clientGrid'), clientTypes, 'clientType', () =>
     document.getElementById('clientErr').classList.remove('show'));
-  buildCheckGroup(document.getElementById('txGrid'), transactions, 'transaction',
-    document.getElementById('txCount'), document.getElementById('txErr'));
+  // ── FIX: transactions now use single-select radio buttons ──
+  buildRadioGroup(document.getElementById('txGrid'), transactions, 'transaction', () =>
+    document.getElementById('txErr').classList.remove('show'));
   buildRadioGroup(document.getElementById('platformGrid'), platforms, 'platform', () =>
     document.getElementById('platformErr').classList.remove('show'));
   buildLikert(document.getElementById('likertRows'));
@@ -483,7 +464,7 @@ function validateStep(s) {
     if (!document.querySelector('input[name="clientType"]:checked'))
       { document.getElementById('clientErr').classList.add('show'); ok=false; }
   }
-  if (s===1 && !document.querySelectorAll('input[name="transaction"]:checked').length)
+  if (s===1 && !document.querySelector('input[name="transaction"]:checked'))
     { document.getElementById('txErr').classList.add('show'); ok=false; }
   if (s===2 && !document.querySelector('input[name="platform"]:checked'))
     { document.getElementById('platformErr').classList.add('show'); ok=false; }
@@ -538,7 +519,7 @@ async function submitSurvey() {
     date: document.getElementById('dateField').value,
     gender: gender==='Others' ? 'Others: '+(document.getElementById('genderSpecify').value.trim()||'not specified') : gender,
     clientType: document.querySelector('input[name="clientType"]:checked').value,
-    transactions: [...document.querySelectorAll('input[name="transaction"]:checked')].map(c=>c.value).join(', '),
+    transactions: document.querySelector('input[name="transaction"]:checked').value,
     gradDate: document.getElementById('gradDate').value,
     purpose: document.getElementById('purpose').value.trim(),
     platform: document.querySelector('input[name="platform"]:checked').value,
