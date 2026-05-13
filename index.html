@@ -260,7 +260,14 @@ footer{text-align:center;font-size:.72rem;color:var(--muted);margin-top:28px;pad
     <div class="opt-grid cols2" id="txGrid"></div>
     <div class="err" id="txErr">Please select a transaction.</div>
     <div class="two-col">
-      <div><span class="field-label">Date of Graduation</span><input type="date" id="gradDate"></div>
+      <div>
+        <span class="field-label">Date of Graduation</span>
+        <input type="date" id="gradDate">
+        <label style="display:flex;align-items:center;gap:6px;margin-top:7px;cursor:pointer;font-size:.78rem;color:var(--muted);user-select:none">
+          <input type="checkbox" id="gradNA" style="width:15px;height:15px;accent-color:var(--g);cursor:pointer" onchange="toggleGradNA(this)">
+          Not applicable (N/A)
+        </label>
+      </div>
       <div><span class="field-label">Purpose</span><input type="text" id="purpose" placeholder="State your purpose…"></div>
     </div>
   </div>
@@ -520,7 +527,7 @@ async function submitSurvey() {
     gender: gender==='Others' ? 'Others: '+(document.getElementById('genderSpecify').value.trim()||'not specified') : gender,
     clientType: document.querySelector('input[name="clientType"]:checked').value,
     transactions: document.querySelector('input[name="transaction"]:checked').value,
-    gradDate: document.getElementById('gradDate').value,
+    gradDate: document.getElementById('gradNA').checked ? 'N/A' : (document.getElementById('gradDate').value || 'N/A'),
     purpose: document.getElementById('purpose').value.trim(),
     platform: document.querySelector('input[name="platform"]:checked').value,
     q1: document.querySelector('input[name="q1"]:checked').value,
@@ -555,6 +562,13 @@ function showSuccess() {
   document.getElementById('successScreen').classList.add('show');
   window.scrollTo({top:0,behavior:'smooth'});
   submitting=false;
+}
+
+function toggleGradNA(cb) {
+  const dateInput = document.getElementById('gradDate');
+  dateInput.disabled = cb.checked;
+  dateInput.style.opacity = cb.checked ? '.4' : '1';
+  if (cb.checked) dateInput.value = '';
 }
 
 document.getElementById('restartBtn').addEventListener('click', () => location.reload());
